@@ -109,6 +109,6 @@ If not used, do not need to be performed.
         Auth.reset();
     }
     ```
-2. Click in the top menu of the editor `Publish` -` Deploy as web application`. For new interface: `Deploy` -` Test Deployments`
+2. Click in the top menu of the editor `Publish` -`Deploy as web application`. For new interface: `Deploy` -`Test Deployments`
 3. Copy the link from the window that opens and follow it in a new tab
 4. Click on `Authorize` and confirm the new access rights
