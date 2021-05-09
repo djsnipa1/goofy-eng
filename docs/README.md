@@ -30,6 +30,6 @@ Detailed description
 
 ## Help
 For help with the algorithm or errors, create a new topic [here](https://github.com/Chimildic/goofy/discussions).
-Detailed documentation available [here](https://chimildic.github.io/goofy/). Before asking any questions, please through read it.
+Detailed documentation available [here](https://chimildic.github.io/goofy/). Before asking any questions, please read through it.
 
 [☕ support the project](https://yoomoney.ru/to/410014208620686)
