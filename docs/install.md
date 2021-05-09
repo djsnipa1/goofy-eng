@@ -1,114 +1,114 @@
-# Установка и настройка
+# Installation and configuration
 
-Вы создаете собственную копию библиотеки. Только вы имеете доступ ко всему, что происходит в этой копии. 
+You will create your own copy of the library. You will be the only one with access to everything that happens in this copy unless it is shared afterwards. 
 
-## Первая установка
+## First installation
 
-Выполняется один раз. 
-> [Видео инструкция](https://drive.google.com/file/d/1yhI8sfBVAyhn5RUUtOxKLiYSgdIF9Ts9/view) с новым интерфейсом платформы Apps Script. 
+Executed once. 
+> [Video instruction](https://drive.google.com/file/d/1yhI8sfBVAyhn5RUUtOxKLiYSgdIF9Ts9/view) with the new Apps Script platform interface. 
 > 
-> [Видео инструкция](https://drive.google.com/file/d/13I_E9g5x_Gb-G-KANmzUxLgDv-bPkQsu/view) для старого интерфейса.
+> [Video instruction](https://drive.google.com/file/d/13I_E9g5x_Gb-G-KANmzUxLgDv-bPkQsu/view) for the old interface.
 
-1. Перейдите в [Spotify Dashboard](https://developer.spotify.com/dashboard/). Нажмите `Log in` и авторизуйтесь в Spotify. Примите условия использования.
+1. Go to [Spotify Dashboard](https://developer.spotify.com/dashboard/). Click on `Log in` and log in to Spotify. Accept the terms of use.
 
-   ![Условия использования](/img/install-step-dashboard-term.png)
+   ![Terms of Use](/img/install-step-dashboard-term.png)
 
-2. Нажмите кнопку `Create an app`. Введите произвольное имя и описание. Поставьте галочки. Нажмите кнопку `Create`.
+2. Click the `Create an app` button. Enter any name and description. Check the boxes. Click the `Create` button.
 
-   ![Создание приложения](/img/install-step-create-app.png)
+   ![Application creation](/img/install-step-create-app.png)
 
-3. Перейдите к [библиотеке в Apps Script](https://script.google.com/d/1DnC4H7yjqPV2unMZ_nmB-1bDSJT9wQUJ7Wq-ijF4Nc7Fl3qnbT0FkPSr/edit?usp=sharing). Войдите в Google аккаунт, если потребуется.
+3. Switch to [library in Apps Script](https://script.google.com/d/1DnC4H7yjqPV2unMZ_nmB-1bDSJT9wQUJ7Wq-ijF4Nc7Fl3qnbT0FkPSr/edit?usp=sharing). Sign in to your Google account if required.
 
-4. Выберите слева `Общие сведения` и справа `Создать копию`. Откроется копия, созданная на вашем аккаунте. Переименуйте, если нужно (нажать на имя вверху страницы).
+4. Select on the left `General information` and on the right` Create a copy`. A copy created on your account will open. Rename, if necessary (click on the name at the top of the page).
 
-    ![Создать копию](/img/install-step-copy.png)
+    ![Create a copy](/img/install-step-copy.png)
 
-5. Перейдите в файл `config.gs`. Вставьте `CLIENT_ID` и `CLIENT_SECRET` вместо слов `вашеЗначение`. Значения брать в созданном приложении Spotify на шаге 2.
+5. Go to the file `config.gs`. Insert `CLIENT_ID` and` CLIENT_SECRET` instead of `yourValue`. Take the values in the created Spotify application in step 2.
 
-   Сохраните изменение `Ctrl + S` или иконка дискеты на панели действий
+   Save the change `Ctrl + S` or the floppy disk icon in the action bar
 
-   ![Client ID и Client Secret](/img/install-step-client-id2.png)
+   ![Client ID and Client Secret](/img/install-step-client-id2.png)
 
-6. Запустите в редакторе выполнение функции `setProperties`. 
+6. Run the function execution in the editor `setProperties`. 
 
    ![run setProperties](/img/install-run-setProperties.png)
 
-   Увидите всплывающее сообщение с необходимость предоставить права доступа. Согласитесь на выдачу.
+   You will see a pop-up message asking you to grant access rights. Agree to be issued.
 
-   ![запрос прав](/img/install-permission-request.png)
+   ![request rights](/img/install-permission-request.png)
 
-   Выберите Google аккаунт, на котором создали копию библиотеки.
+   Select the Google account that created the copy of the library.
 
-   ![Выбор аккаунта](/img/install-step-account.png)
+   ![Account selection](/img/install-step-account.png)
 
-   Нажмите `Дополнительные настройки`, затем `Перейти на страницу "Копия Goofy (Ver. 1)"`
+   Click on `Advanced Settings`, then` Go to the "Copy of Goofy (Ver. 1.X)" page`
 
-   ![Выбор аккаунта](/img/install-step-warning.png)
+   ![Account selection](/img/install-step-warning.png)
 
-   Нажмите кнопку `Разрешить` внизу окна.
+   Click the `Allow` button at the bottom of the window.
 
-   ![Выбор аккаунта](/img/install-step-grant-permissions.png)
+   ![Account selection](/img/install-step-grant-permissions.png)
 
-7. Окно закроется. Выберите `Начать развертывание` - `Пробные развертывания`
+7. The window will close. Select `Start Deployment` -` Test Deployments`
 
-   ![Развернуть веб-приложение](/img/install-step-webapp.png)
+   ![Deploy web application](/img/install-step-webapp.png)
 
-   В появившимся окне скопируйте ссылку. Должно заканчиваться на `dev`.
+   In the window that appears, copy the link. Must end with `dev`.
 
-   ![Скопировать ссылку](/img/install-step-link.png)
+   ![Copy link](/img/install-step-link.png)
 
-8. В **новой вкладке** перейдите по скопированной ссылке. На открывшийся странице скопируйте ссылку внизу страницы. Оканчивается на `usercallback`.
+8. In a ** new tab ** follow the copied link. On the page that opens, copy the link at the bottom of the page. Ends with `usercallback`.
 
-   ![Callback-ссылка](/img/install-step-callback-link.png)
+   ![Callback link](/img/install-step-callback-link.png)
 
-9. Вернитесь в [Spotify Dashboad](https://developer.spotify.com/dashboard/). Нажмите кнопку `EDIT SETTINGS` у вашего приложения.
+9. Return to [Spotify Dashboad] (https://developer.spotify.com/dashboard/). Press the `EDIT SETTINGS` button for your application.
     
-    Вставьте в поле `Redirect URIs` скопированную ссылку из шага 8. Нажмите кнопку `ADD`. Затем внизу кнопку `Save`.
+    Paste the copied link from step 8 into the `Redirect URIs` field. Press the` ADD` button. Then at the bottom the `Save` button.
     
-    ![Добавить callback](/img/install-step-dashboard-redirect.png)
+    ![Add callback](/img/install-step-dashboard-redirect.png)
 
-10. Перейдите на вкладку из шага 8 и обновите эту страницу (`F5`).
+10. Go to the tab from step 8 and refresh this page (`F5`).
 
-    Нажмите кнопку `Authorize`.
+    Click the `Authorize` button.
 
-    ![Callback-ссылка](/img/install-step-callback-link.png)
+    ! [Callback-link] (/ img / install-step-callback-link.png)
 
-    Разрешите доступ к аккаунту Spotify.
+    Allow access to your Spotify account.
 
-    ![Разрешения Spotify](/img/install-step-grant-spotify.png)
+    ! [Spotify Permissions] (/ img / install-step-grant-spotify.png)
 
-    Должны появиться слова о успешном выполнении.
+    Words of successful completion should appear.
 
-    Первая установка и настройка завершены.
+    The first installation and configuration is now complete.
 
-## Настройка Lastfm
+## Configuring Lastfm
 
-Если не используется, выполнять не нужно.
+If not used, do not need to be performed.
 
-1. Создайте точку входа [здесь](https://www.last.fm/api/account/create). Заполните название и описание произвольно. Остальное пропустить, оставить пустым.
-2. Полученный `API key` присвоить параметру `LASTFM_API_KEY`. 
-3. Запустить в редакторе выполнение функции `setProperties`.
+1. Create an entry point [here] (https://www.last.fm/api/account/create). Fill in the title and description arbitrarily. Skip the rest, leave blank.
+2. Assign the received `API key` to the parameter` LASTFM_API_KEY`.
+3. Start execution of the `setProperties` function in the editor.
 
 ![Lastfm account api](/img/lastfm_account_api3.png)
 
-## Обновить библиотеку
+## Refresh library
 
-1. Замените все содержимое файла `library.gs` на новое (Ctrl + A, Ctrl + V), которое берется [здесь](https://github.com/Chimildic/goofy/blob/main/library.js) или [здесь](https://script.google.com/d/1DnC4H7yjqPV2unMZ_nmB-1bDSJT9wQUJ7Wq-ijF4Nc7Fl3qnbT0FkPSr/edit?usp=sharing) (Ctrl + A, Ctrl + C)
-2. Сохраните файл: `Файл` - `Сохранить` или Ctrl + S
+1. Replace the entire contents of the `library.gs` file with a new one (Ctrl + A, Ctrl + V) taken from [here] (https://github.com/Chimildic/goofy/blob/main/library.js) or [here] (https://script.google.com/d/1DnC4H7yjqPV2unMZ_nmB-1bDSJT9wQUJ7Wq-ijF4Nc7Fl3qnbT0FkPSr/edit?usp=sharing) (Ctrl + A, Ctrl + C)
+2. Save the file: `File` -` Save` or Ctrl + S
 
-## Обновить параметры
+## Update parameters
 
-1. Измените требуемый параметр в файле `config.gs`
-2. Запустите в редакторе функцию `setProperties`
+1. Change the required parameter in the file `config.gs`
+2. Run the `setProperties` function in the editor
 
-## Обновить права доступа
+## Update permissions
 
-1. Вставьте следующую функцию и запустите в редакторе один раз. После можно ее удалить.
+1. Insert the following function and run it in the editor once. Then you can delete it.
     ```js
     function resetAuth(){
         Auth.reset();
     }
     ```
-2. Нажмите в верхнем меню редактора `Опубликовать` - `Развернуть как веб приложение`. Для нового интерфейса: `начать развертывание` - `пробные развертывания`
-3. Скопируйте ссылку из открывшегося окна и перейдите по ней в новой вкладке
-4. Нажмите `Authorize` и подтвердите новые права доступа
+2. Click in the top menu of the editor `Publish` -` Deploy as web application`. For new interface: `start deployment` -` trial deployments`
+3. Copy the link from the window that opens and follow it in a new tab
+4. Click on `Authorize` and confirm the new access rights
