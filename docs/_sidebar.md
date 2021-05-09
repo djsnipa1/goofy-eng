@@ -1,9 +1,9 @@
-- [Описание](/desc.md)
-- **Быстрый старт**
-- [Установка](/install.md)
-- [Первый плейлист](/first-playlist.md)
-- **Справочник**
-- [Шаблоны](/template.md)
-- [Список функций](/func.md)
-- [Дополнительное описание](/guide.md)
+- [Description](/desc.md)
+- **Fast start**
+- [Installation](/install.md)
+- [First Playlist](/first-playlist.md)
+- **Directory**
+- [Templates](/template.md)
+- [Feature List](/func.md)
+- [Additional Descriptions](/guide.md)
   

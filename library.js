@@ -1,4 +1,6 @@
-// Документация: https://chimildic.github.io/goofy/
+// Documentation: https://chimildic.github.io/goofy/
+// All changes to comments done through google translate, however they were located through text filters so actual code has not changed.
+// All credit for this API script still goes to the original creator of Goofy
 const VERSION = '1.4.7';
 const UserProperties = PropertiesService.getUserProperties();
 const KeyValue = UserProperties.getProperties();
@@ -6,7 +8,7 @@ const API_BASE_URL = 'https://api.spotify.com/v1';
 const DEFAULT_DATE = new Date('2000-01-01');
 
 function doGet() {
-    return Auth.hasAccess() ? HtmlService.createHtmlOutput('Успешно') : Auth.displayAuthPage();
+    return Auth.hasAccess() ? HtmlService.createHtmlOutput('Connected Successfully') : Auth.displayAuthPage();
 }
 
 function displayAuthResult_(request) {
@@ -70,7 +72,7 @@ const CustomUrlFetchApp = (function () {
                 }
             });
             if (seconds > 0) {
-                console.info('Пауза в отправке запросов', seconds);
+                console.info('Pausing sending requests for', seconds);
                 Utilities.sleep(seconds * 1000);
                 Combiner.push(result, sendPack(failed));
             }
@@ -83,7 +85,7 @@ const CustomUrlFetchApp = (function () {
             } catch (e) {
                 console.error(e.stack);
                 if (attempt++ < 2) {
-                    console.error(`Повторная отправка через 10 секунд. Попытка ${attempt}`);
+                    console.error(`Re-sending in 10 seconds. Attempt ${attempt}`);
                     Utilities.sleep(10000);
                     return tryFetchAll(requests, attempt);
                 }
@@ -99,7 +101,7 @@ const CustomUrlFetchApp = (function () {
 
         function onRetryAfter() {
             let value = 1 + (response.getHeaders()['Retry-After'] || 2);
-            console.info('Пауза в отправке запросов', value);
+            console.info('Pause sending requests', value);
             Utilities.sleep(value * 1000);
             return fetch(url, params);
         }
@@ -143,14 +145,14 @@ const CustomUrlFetchApp = (function () {
 
     function parseJSON(response) {
         let content = response.getContentText();
-        return content.length > 0 ? tryParseJSON(content) : { msg: 'Пустое тело ответа', status: response.getResponseCode() };
+        return content.length > 0 ? tryParseJSON(content) : { msg: 'Empty response body', status: response.getResponseCode() };
     }
 
     function tryParseJSON(content) {
         try {
             return JSON.parse(content);
         } catch (e) {
-            console.error('Не удалось перевести строку JSON в объект. ', e, e.stack, content);
+            console.error('Failed to translate JSON string to object.', e, e.stack, content);
             return [];
         }
     }
@@ -359,7 +361,7 @@ const Source = (function () {
             getTracksMethod = getAlbumsTracks;
         } else if (params.type == 'track') {
             findMethod = Search.findTracks;
-            // getTracksMethod - не нужно, треки уже в результате поиска
+            // getTracksMethod - not necessary, tracks are already in the search result
         } else {
             params.type = 'playlist';
             findMethod = Search.findPlaylists;
@@ -460,7 +462,7 @@ const Source = (function () {
                 value -= params.query.seed_artists.split(',').length;
             }
             if (value <= 0) {
-                throw `Не осталось места под ${params.key}. Уменьшите количество значения других seed_*`;
+                throw `There is no room left for ${params.key}. Reduce the value of others seed_*`;
             }
             return value;
         }
@@ -555,7 +557,7 @@ const RecentTracks = (function () {
     const ITEMS_LIMIT = 20000;
 
     if (getTrigger('updateRecentTracks')) {
-        // Удаляет триггер предыдущих версий библиотеки
+        // Removes the trigger of previous versions of the library
         deleteTrigger('updateRecentTracks');
     }
 
@@ -641,13 +643,13 @@ const RecentTracks = (function () {
 
     function appendNewPlayed(newItems, filename) {
         if (newItems.length == 0) {
-            console.info('Нет новых треков для файла', filename);
+            console.info('No new tracks for the file', filename);
             return false;
         }
         Cache.compressTracks(newItems);
-        console.info('Новых треков:', newItems.length, 'в файле', filename);
+        console.info('New tracks:', newItems.length, 'in file', filename);
         Cache.append(filename, newItems, 'begin', ITEMS_LIMIT);
-        console.info('Общее количество:', newItems.length);
+        console.info('Total amount:', newItems.length);
         return true;
     }
 
@@ -1013,7 +1015,7 @@ const Filter = (function () {
                     availableState.push(id);
                 } else {
                     unavailableState.push(t.id);
-                    console.log('Трек нельзя послушать:', t.id, '-', getTrackKey(t));
+                    console.log('The track cannot be listened to:', t.id, '-', getTrackKey(t));
                 }
             });
         }
@@ -1058,7 +1060,7 @@ const Filter = (function () {
         let urls = [];
         copyTracks.forEach((t) => {
             if (!features[t.id] || !features[t.id].danceability) {
-                console.log(`У трека ${t.artists[0].name} ${t.name} нет features`);
+                console.log(`In the track ${t.artists[0].name} ${t.name} no features`);
                 return;
             }
             urls.push(
@@ -1147,7 +1149,7 @@ const Filter = (function () {
         let endTime = endDate ? endDate.getTime() : Date.now();
 
         if (startTime >= endTime) {
-            console.error('Начальная граница больше, чем конечная граница:', startDate, endDate);
+            console.error('Start Boundary is Greater than End Boundary:', startDate, endDate);
             return;
         }
 
@@ -1403,15 +1405,15 @@ const Selector = (function () {
         if (tracksByYear.hasOwnProperty(year) || tracks.length == 0) {
             return tracksByYear[year] || [];
         }
-        console.log(`Среди ${tracks.length} треков нет вышедших в ${year} году`);
+        console.log(`Among ${tracks.length} no tracks released in ${year} year`);
         year = parseInt(year);
         let keys = Object.keys(tracksByYear).map((item) => parseInt(item));
         let nearYear = keys.sort((x, y) => Math.abs(year - x) - Math.abs(year - y))[0];
         if (typeof nearYear != 'undefined' && Math.abs(nearYear - year) <= offset) {
-            console.log(`Выбран ближайший год: ${nearYear}`);
+            console.log(`The next year is selected: ${nearYear}`);
             return tracksByYear[nearYear.toString()];
         }
-        console.log(`При смещении ${offset}, ближайший год не найден`);
+        console.log(`When displaced ${offset}, next year not found`);
         return [];
     }
 
@@ -1635,7 +1637,7 @@ const Playlist = (function () {
         Filter.dedupArtists(copyTracks);
         let artists = Selector.sliceRandom(copyTracks, limit);
         let strArtists = artists.map((track) => track.artists[0].name).join(', ');
-        return `${strArtists} и не только`;
+        return `${strArtists} and others.`;
     }
 
     const getPlaylistArray = (function () {
@@ -1747,7 +1749,7 @@ const Playlist = (function () {
         let count = Math.ceil(uris.length / size);
         let url = `${API_BASE_URL}/playlists/${data.id}/tracks`;
         if (count == 0 && requestType == 'put') {
-            // Удалить треки в плейлисте
+            // Delete tracks in playlist
             SpotifyRequest.put(url, { uris: [] });
             return;
         }
@@ -1757,17 +1759,17 @@ const Playlist = (function () {
             let end = begin + size;
             let payload = { uris: uris.slice(begin, end) };
             if ((!data.hasOwnProperty('toEnd') || !data.toEnd) && requestType === 'post') {
-                // добавлять треки вначало плейлиста со смещением begin, чтобы сохранить оригинальную сортировку
+                // add tracks at the beginning of the playlist with an offset begin to keep the original sorting
                 payload.position = begin;
             }
 
             if (requestType === 'post') {
-                // post-запрос добавляет треки в плейлист
+                // post request adds tracks to the playlist
                 SpotifyRequest.post(url, payload);
             } else if (requestType === 'put') {
-                // put-запрос заменяет все треки плейлиста
+                // put request replaces all tracks in the playlist
                 SpotifyRequest.put(url, payload);
-                // сменить тип запроса, чтобы добавлять остальные треки
+                // change request type to add other tracks
                 requestType = 'post';
             }
         }
@@ -2041,7 +2043,7 @@ const Lastfm = (function () {
         let queryObj = { method: 'user.getlovedtracks', user: user, limit: limit || 200 };
         let tracks = getPage(queryObj);
         if (!tracks.lovedtracks) {
-            console.error('Ошибка при получении любимых треков', tracks);
+            console.error('Error retrieving favorite tracks', tracks);
             return [];
         }
         return Search.multisearchTracks(tracks.lovedtracks.track, formatTrackNameLastfm);
@@ -2051,7 +2053,7 @@ const Lastfm = (function () {
         params.method = 'user.gettoptracks';
         let tracks = getTopPage(params);
         if (!tracks.toptracks) {
-            console.error('Ошибка при получении топа треков', tracks);
+            console.error('Error while getting top of tracks', tracks);
             return [];
         }
         return Search.multisearchTracks(tracks.toptracks.track, formatTrackNameLastfm);
@@ -2061,7 +2063,7 @@ const Lastfm = (function () {
         params.method = 'user.gettopartists';
         let artists = getTopPage(params);
         if (!artists.topartists) {
-            console.error('Ошибка при получении топа исполнителей', artists);
+            console.error('Error getting top performers', artists);
             return [];
         }
         return Search.multisearchArtists(artists.topartists.artist, formatArtistNameLastfm);
@@ -2071,7 +2073,7 @@ const Lastfm = (function () {
         params.method = 'user.gettopalbums';
         let albums = getTopPage(params);
         if (!albums.topalbums) {
-            console.error('Ошибка при получении топа альбомов', albums);
+            console.error('Error getting top albums', albums);
             return [];
         }
         return Search.multisearchAlbums(albums.topalbums.album, formatAlbumNameLastfm);
@@ -2452,9 +2454,9 @@ const Cache = (function () {
         try {
             return JSON.parse(content);
         } catch (e) {
-            console.error('Не удалось перевести строку JSON в объект. Length:', content.length, 'content:', content);
+            console.error('Failed to translate JSON string to object. Length:', content.length, 'content:', content);
             console.error(e, e.stack);
-            throw 'Ошибка чтения файла';
+            throw 'File read error';
         }
     }
 
@@ -2584,7 +2586,7 @@ const Search = (function () {
                     item.keyword = uniqueKeyword[i];
                     resultItems.push(item);
                 } else {
-                    console.info('Spotify по типу', type, 'не нашел:', uniqueKeyword[i]);
+                    console.info('Spotify by type ', type, 'not found:', uniqueKeyword[i]);
                 }
             }
             return resultItems;
@@ -2708,8 +2710,8 @@ const getCachedTracks = (function () {
             fullAlbums.forEach((album) => (cachedTracks.albums[album.id] = album));
         }
         if (uncachedTracks.features.length > 0) {
-            // limit = 100, но UrlFetchApp.fetch выдает ошибку о превышении длины URL
-            // При limit 85, длина URL для этого запроса 2001 символ
+            // limit = 100, but UrlFetchApp.fetch throws an exceeded URL error
+            // With limit 85, the URL length for this request is 2001 characters
             let features = SpotifyRequest.getFullObjByIds('audio-features', uncachedTracks.features, 85);
             features.forEach((item) => {
                 if (item != null) {
@@ -2719,7 +2721,7 @@ const getCachedTracks = (function () {
         }
     }
 
-    // В объектах Track, Album, Artist Simplified нет ключа popularity
+    // There is no popularity key in Track, Album, Artist Simplified objects
     function isTrackSimplified(track) {
         return !track.popularity;
     }
