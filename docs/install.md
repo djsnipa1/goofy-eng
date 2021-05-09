@@ -15,23 +15,23 @@ Executed once.
 
 2. Click the `Create an app` button. Enter any name and description. Check the boxes. Click the `Create` button.
 
-   ![Application creation](/img/install-step-create-app.png)
+   ![Application creation](/img/install-step-create-app_eng.png)
 
 3. Switch to [library in Apps Script](https://script.google.com/d/1DnC4H7yjqPV2unMZ_nmB-1bDSJT9wQUJ7Wq-ijF4Nc7Fl3qnbT0FkPSr/edit?usp=sharing). Sign in to your Google account if required.
 
 4. Select on the left `Overview` and on the right` Create a copy`. A copy created on your account will open. Rename, if necessary (click on the name at the top of the page).
 
-    ![Create a copy](/img/install-step-copy.png)
+    ![Create a copy](/img/install-step-copy_eng.png)
 
-5. Go to the file `config.gs`. Insert `CLIENT_ID` and` CLIENT_SECRET` instead of `yourValue`. Take the values in the created Spotify application in step 2.
+5. Go to the file `config.gs`. Insert `CLIENT_ID` and` CLIENT_SECRET` instead of `yourID`. Take the values in the created Spotify application in step 2.
 
    Save the change `Ctrl + S` or the floppy disk icon in the action bar
 
-   ![Client ID and Client Secret](/img/install-step-client-id2.png)
+   ![Client ID and Client Secret](/img/install-step-client-id2_eng.png)
 
 6. Run the function execution in the editor `setProperties`. 
 
-   ![run setProperties](/img/install-run-setProperties.png)
+   ![run setProperties](/img/install-run-setProperties_eng.png)
 
    You will see a pop-up message asking you to grant access rights. Agree to be issued.
 
@@ -39,23 +39,23 @@ Executed once.
 
    Select the Google account that created the copy of the library.
 
-   ![Account selection](/img/install-step-account.png)
+   ![Account selection](/img/install-step-account_eng.png)
 
    Click on `Advanced Settings`, then` Go to the "Copy of Goofy (Ver. 1.X)" page`
 
-   ![Account selection](/img/install-step-warning.png)
+   ![Account selection](/img/install-step-warning_eng.png)
 
    Click the `Allow` button at the bottom of the window.
 
-   ![Account selection](/img/install-step-grant-permissions.png)
+   ![Account selection](/img/install-step-grant-permissions_eng.png)
 
-7. The window will close. Select `Start Deployment` -` Test Deployments`
+7. The window will close. Select `Start Deployment` - `Test Deployments`
 
-   ![Deploy web application](/img/install-step-webapp.png)
+   ![Deploy web application](/img/install-step-webapp_eng.png)
 
    In the window that appears, copy the link. Must end with `dev`.
 
-   ![Copy link](/img/install-step-link.png)
+   ![Copy link](/img/install-step-link_eng.png)
 
 8. In a ** new tab ** follow the copied link. On the page that opens, copy the link at the bottom of the page. Ends with `usercallback`.
 
@@ -75,7 +75,7 @@ Executed once.
 
     Allow access to your Spotify account.
 
-    ! [Spotify Permissions] (/img/install-step-grant-spotify.png)
+    ! [Spotify Permissions] (/img/install-step-grant-spotify_eng.png)
 
     Words of successful completion should appear.
 
@@ -89,7 +89,7 @@ If not used, do not need to be performed.
 2. Assign the received `API key` to the parameter` LASTFM_API_KEY`.
 3. Start execution of the `setProperties` function in the editor.
 
-![Lastfm account api](/img/lastfm_account_api3.png)
+![Lastfm account api](/img/lastfm_account_api3_eng.png)
 
 ## Refresh library
 
