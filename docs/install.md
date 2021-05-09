@@ -19,7 +19,7 @@ Executed once.
 
 3. Switch to [library in Apps Script](https://script.google.com/d/1DnC4H7yjqPV2unMZ_nmB-1bDSJT9wQUJ7Wq-ijF4Nc7Fl3qnbT0FkPSr/edit?usp=sharing). Sign in to your Google account if required.
 
-4. Select on the left `General information` and on the right` Create a copy`. A copy created on your account will open. Rename, if necessary (click on the name at the top of the page).
+4. Select on the left `Overview` and on the right` Create a copy`. A copy created on your account will open. Rename, if necessary (click on the name at the top of the page).
 
     ![Create a copy](/img/install-step-copy.png)
 
