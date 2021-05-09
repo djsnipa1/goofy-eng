@@ -200,7 +200,7 @@ const Source = (function () {
 
     function getTop(timeRange, type) {
         timeRange = isValidTimeRange(timeRange) ? timeRange : 'medium';
-        // Баг Spotify: https://community.spotify.com/t5/Spotify-for-Developers/Bug-with-offset-for-method-quot-Get-User-s-Top-Artists-and/td-p/5032362
+        // Bug Spotify: https://community.spotify.com/t5/Spotify-for-Developers/Bug-with-offset-for-method-quot-Get-User-s-Top-Artists-and/td-p/5032362
         let template = API_BASE_URL + '/me/top/%s?offset=%s&limit=%s&&time_range=%s_term';
         return SpotifyRequest.getAll([
             Utilities.formatString(template, type, 0, 49, timeRange),
@@ -2775,7 +2775,7 @@ const Auth = (function () {
 
     function displayAuthResult(request) {
         let isAuthorized = service.handleCallback(request);
-        return HtmlService.createHtmlOutput(isAuthorized ? 'Успешно!' : 'Отказано в доступе');
+        return HtmlService.createHtmlOutput(isAuthorized ? 'Authorized!' : 'Access denied');
     }
 
     function displayAuthPage() {
