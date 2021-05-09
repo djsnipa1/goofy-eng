@@ -71,11 +71,11 @@ Executed once.
 
     Click the `Authorize` button.
 
-    ! [Callback-link] (/ img / install-step-callback-link.png)
+    ! [Callback-link] (/img/install-step-callback-link.png)
 
     Allow access to your Spotify account.
 
-    ! [Spotify Permissions] (/ img / install-step-grant-spotify.png)
+    ! [Spotify Permissions] (/img/install-step-grant-spotify.png)
 
     Words of successful completion should appear.
 
