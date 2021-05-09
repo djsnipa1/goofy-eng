@@ -1,102 +1,102 @@
-# Список изменений 
+# List of changes
 
-Текущая версия библиотеки отражена в константе `VERSION` файла `Library`
+The current version of the library is reflected in the constant `VERSION` in the file` Library`
 
-Подробности о работе функций смотреть в [справочнике](/func)
+For details on how the functions work, see the [reference](/func)
 
-Для добавления своих функций или переопределения существующих, используйте [инструкцию](https://github.com/Chimildic/goofy/discussions/18).
+To add your own functions or override existing ones, use the [instructions](https://github.com/Chimildic/goofy/discussions/18).
 
-[Перейти к обновленному коду](https://script.google.com/d/1DnC4H7yjqPV2unMZ_nmB-1bDSJT9wQUJ7Wq-ijF4Nc7Fl3qnbT0FkPSr/edit?usp=sharing).
+[Go to updated code](https://script.google.com/d/1DnC4H7yjqPV2unMZ_nmB-1bDSJT9wQUJ7Wq-ijF4Nc7Fl3qnbT0FkPSr/edit?usp=sharing).
 
-## Версия 1.4.7
-- Эксперимент. При неизвестной ошибке со стороны Google во время записи через `Cache.write` происходит повторная попытка записи после паузы. 
+## Version 1.4.7
+- Experiment. In case of an unknown error on the part of Google while writing via `Cache.write`, the write is retry after a pause.
 
-## Версия 1.4.6
-- Новая функция [getPlayingTrack](/func?id=getplayingtrack). Требуется [обновить права доступа](/install?id=Обновить-права-доступа).
-- При создании плейлиста можно указать статичную обложку через прямую ссылку на нее.
+## Version 1.4.6
+- New function [getPlayingTrack](/func?id=getplayingtrack). Requires [update permissions](/install?id=Обновить-права-доступа).
+- When creating a playlist, you can specify a static cover through a direct link to it.
 
-## Версия 1.4.5
-- Теперь [mineTracks](/func?id=minetracks) может искать ключевые слова в названиях альбомов и самих треках. 
-- В `mineTracks` аргумент `playlistCount` **переименован** в `itemCount`.
-- Новая функция у Filter: [replaceWithSimilar](/func?id=replacewithsimilar).
-- Новая функция у Lastfm: [getSimilarArtists](/func?id=getsimilarartists).
+## Version 1.4.5
+- Now [mineTracks](/func?id=minetracks) can search for keywords in album titles and in the tracks themselves.
+- In `mineTracks`, the` playlistCount` argument is ** renamed ** to `itemCount`.
+- New function for Filter: [replaceWithSimilar](/func?id=replacewithsimilar).
+- New function for Lastfm: [getSimilarArtists](/func?id=getsimilarartists).
 
-## Версия 1.4.4
-- Новый фильтр [removeUnavailable](/func?id=removeunavailable).
-- `Cache` может читать/писать файлы с расширением `.txt` при явном указании в имени файла.
-- `getCustomTop` поддерживает тип `Date`, [подробнее](https://github.com/Chimildic/goofy/discussions/46#discussioncomment-351974).
-- Исправление логической ошибки в `match` при отборе.
+## Version 1.4.4
+- New filter [removeUnavailable](/func?id=removeunavailable).
+- `Cache` can read / write files with the extension` .txt` when explicitly specified in the file name.
+- `getCustomTop` supports the` Date` type, [more] (https://github.com/Chimildic/goofy/discussions/46#discussioncomment-351974).
+- Correction of a logical error in `match` when selecting.
 
-## Версия 1.4.3
-- Теперь [getCustomTop](/func?id=getcustomtop) может составить топ по альбомам.
-- При сортировке по дате релиза, треки сохраняют оригинальный порядок в рамках своего альбома, если изначально были в таком порядке
-- Багфиксы
+## Version 1.4.3
+- Now [getCustomTop](/func?id=getcustomtop) can compose a top by albums.
+- When sorted by release date, tracks retain their original order within their album, if they were originally in that order
+- Bug fixes
 
-## Версия 1.4.2
-- Теперь [craftTracks](/func?id=crafttracks) может принимать статичные `seed_*` отличные от `key`.
-- Новая функция к Lastfm: [getCustomTop](/func?id=getcustomtop).
-- Новая функция к Selector: [pickYear](/func?id=pickyear).
-- Новая функция к Order: [separateYears](/func?id=separateyears).
-- Улучшение для поиска. Если один и тот же элемент присутствует в массиве несколько раз (то есть имеет одинаковое ключевое слово для поиска), будет затрачен только один запрос поиска.
-- Функции `Source`, связанные с плейлистами, добавляют к каждому треку объект `origin`, содержащий `name` и `id` плейлиста-источника.
-- Предпринята попытка продолжить исполнение кода после получения исключения `Exception: Адрес недоступен`, [подробнее](https://github.com/Chimildic/goofy/discussions/27).
+## Version 1.4.2
+- Now [craftTracks](/func?id=crafttracks) can accept static `seed_ *` other than `key`.
+- New function for Lastfm: [getCustomTop](/func?id=getcustomtop).
+- New function for Selector: [pickYear](/func?id=pickyear).
+- New function for Order: [separateYears](/func?id=separateyears).
+- Improvement for search. If the same element appears multiple times in the array (that is, it has the same search keyword), only one search query will be consumed.
+- The `Source` playlist-related functions add an` origin` object to each track containing the `name` and` id` of the source playlist.
+- An attempt was made to continue executing the code after receiving the exception `Exception: Address not available`, [more] (https://github.com/Chimildic/goofy/discussions/27).
 
-## Версия 1.4.1
-- Ускорено время выполнения функции `craftTracks`.
-- Найдена недокументированная возможность Spotify API. Функция [getRecomTracks](/func?id=getrecomtracks) поддерживает ключ `popularity`. В связи с этим он **удален** у [craftTracks](/func?id=crafttracks). Переместите его в параметр `query`, если использовали. 
-- К `Order.sort` добавлена возможность сортировки по дате релиза альбома, которому принадлежит трек.
-- Из списка функций, которым можно задать триггер скрыты `displayAuthResult`, `updateRecentTracks`, `logProperties`.
+## Version 1.4.1
+- Speed ​​up the execution time of the `craftTracks` function.
+- Found an undocumented Spotify API feature. The [getRecomTracks](/func?id=getrecomtracks) function supports the popularity key. Therefore, it is ** removed ** from [craftTracks](/func?id=crafttracks). Move it to the `query` parameter if used.
+- Added the ability to sort by the release date of the album to which the track belongs to `Order.sort`.
+- `displayAuthResult`,` updateRecentTracks`, `logProperties` are hidden from the list of functions that can be set to trigger.
 
-## Версия 1.4.0
-- **Удалена** функция `Source.getRecentTracks`. Используйте `RecentTracks.get` или `Cache.read` для нужного файла истории.
-- Новые функции к Source: [mineTracks](/func?id=minetracks), [craftTracks](/func?id=crafttracks).
-- Новая функция к RecentTracks: [appendTracks](/func?id=appendtracks).
-- Структура файла `SpotifyRecentTracks` обновлена до обычного массива треков (как у остальных файлов истории). Обновление произойдет автоматически при первом запуске триггера. До этого момента `Cache.read` будет возвращать старую структуру.
-- К Library добавлены функции сохранения и удаления альбомов библиотеки.
+## Version 1.4.0
+- ** Removed ** function `Source.getRecentTracks`. Use `RecentTracks.get` or` Cache.read` for the desired history file.
+- New functions for Source: [mineTracks](/func?id=minetracks), [craftTracks](/func?id=crafttracks).
+- New function for RecentTracks: [appendTracks](/func?id=appendtracks).
+- The structure of the `SpotifyRecentTracks` file has been updated to a regular array of tracks (like the rest of the history files). The update will happen automatically the first time the trigger is run. Until then, `Cache.read` will return the old structure.
+- Added functions to save and delete library albums to Library.
 
-## Версия 1.3.4 
-- Новые функции к Source: [getCategoryTracks](/func?id=getcategorytracks), [getListCategory](/func?id=getlistcategory).
-- Появился параметр [REQUESTS_IN_ROW](/guide?id=Параметры).
-- При чтении пустого файла через Cache.read выбрасывается исключение, чтобы предотвратить перезапись файла при баге со стороны Google ([подробнее](https://github.com/Chimildic/goofy/discussions/26)).
-- Новая функция [Playlist.saveWithUpdate](/func?id=savewithupdate).
-- Функции match* могут принимать массив исполнителей. В случае массива треков, сравнение по названию трека и альбома (без исполнителя). В случае массива исполнителей, только его имя.
-- В документацию добавлены шаблоны с форума (Назад в этот день, исполнитель дня)
+## Version 1.3.4
+- New functions for Source: [getCategoryTracks](/func?id=getcategorytracks), [getListCategory](/func?id=getlistcategory).
+- The parameter [REQUESTS_IN_ROW](/guide?id=Параметры) has appeared.
+- When reading an empty file via Cache.read, an exception is thrown to prevent the file from being overwritten in case of a bug on the part of Google ([more] (https://github.com/Chimildic/goofy/discussions/26)).
+- New function [Playlist.saveWithUpdate](/func?id=savewithupdate).
+- The match * functions can take an array of artists. In the case of an array of tracks, comparison by track name and album name (without artist). In the case of an array of artists, only its name.
+- Added templates from the forum to the documentation (Back to this day, performer of the day)
 
-## Версия 1.3.3
-- Оптимизация запросов к Last.fm в механизме накопления. Поиск только тех треков, что являются новыми для истории прослушиваний.
-- Новые функции к Lastfm: [getSimilarTracks](/func?id=getsimilartracks), [getTopArtists](/func?id=gettopartists-1), [getTopAlbums](/func?id=gettopalbums).
-- Новые функция к Source: [getRelatedArtists](/func?id=getrelatedartists), [getAlbumsTracks](/func?id=getalbumstracks).
-- Новая функция к Yandex: [getAlbums](/func?id=getalbums).
-- Теперь [dedupArtists](/func?id=dedupartists) может удалить дубликаты из массива исполнителей.
-- Теперь [removeArtists](/func?id=removeartists) может удалять по массиву исполнителей.
-- Корректировка группы методов match*
-- При поиске и сравнивании из строки удаляются специальные символы (,!@# и тд).
-- Более информативные сообщения в логах для истории прослушиваний и при поиске.
+## Version 1.3.3
+- Optimization of queries to Last.fm in the accumulation mechanism. Search only for tracks that are new to your listening history.
+- New functions for Lastfm: [getSimilarTracks](/func?id=getsimilartracks), [getTopArtists](/func?id=gettopartists-1), [getTopAlbums](/func?id=gettopalbums).
+- New functions for Source: [getRelatedArtists](/func?id=getrelatedartists), [getAlbumsTracks](/func?id=getalbumstracks).
+- New function for Yandex: [getAlbums](/func?id=getalbums).
+- Now [dedupArtists](/func?id=dedupartists) can remove duplicates from the artist array.
+- Now [removeArtists](/func?id=removeartists) can remove by array of artists.
+- Correction of the group of methods match *
+- When searching and comparing, special characters (,! @ #, Etc.) are removed from the string.
+- More informative messages in the logs for the history of listening and when searching.
 
-## Версия 1.3.2
-- Обновлен механизм отправки запросов. Многие функции-источники стали отрабатывать быстрее за счет асинхронной отправки сразу N-количества запросов.
-- Дополнение функции mixin. Теперь можно задавать соотношение более, чем двум массивам. Подробнее в [mixinMulti](/func?id=mixinmulti).
-- Новые функции: [getTopArtits](/func?id=gettopartists), [getArtistsTopTracks](/func?id=getartiststoptracks).
+## Version 1.3.2
+- Updated the mechanism for sending requests. Many source functions began to run faster due to the asynchronous sending of N-number of requests at once.
+- Addition of the mixin function. Now you can assign a ratio to more than two arrays. More details in [mixinMulti](/func?id=mixinmulti).
+- New features: [getTopArtits](/func?id=gettopartists), [getArtistsTopTracks](/func?id=getartiststoptracks).
 
-## Версия 1.3.1
-- Новые функции для модуля Cache: [rename](/func?id=rename), [remove](/func?id=remove), [clear](/func?id=clear), [compressArtists](/func?id=compressArtists).
-- Стали публичными функции: [getArtists](/func?id=getartists), [getArtistsAlbums](/func?id=getartistsalbums), [getAlbumTracks](/func?id=getalbumtracks).
-- Функция getTracksArtists **переименована** в getArtistsTracks.
-- Повторный вызов getSavedTracks в том же скрипте отправляет новые запросы к Spotify, вместо возврата ранее полученного. Используйте [sliceCopy](/func?id=slicecopy) для создания копии.
-- Количество отправленных запросов теперь получается через `CustomUrlFetchApp.getCountRequest`.
-- Багфикс: spotify get с 404 прерывал скрипт; lastfm с ошибками 500+ прерывал скрипт.
-- Багфикс: separateArtists не разделял исполнителей.
-- Множество небольших правок.
+## Version 1.3.1
+- New functions for the Cache module: [rename](/func?id=rename), [remove](/func?id=remove), [clear](/func?id=clear), [compressArtists](/func?id=compressArtists).
+- Functions became public: [getArtists](/func?id=getartists), [getArtistsAlbums](/func?id=getartistsalbums), [getAlbumTracks](/func?id=getalbumtracks).
+- The getTracksArtists ** function has been renamed ** to getArtistsTracks.
+- Calling getSavedTracks again in the same script sends new requests to Spotify, instead of returning the previously received one. Use [sliceCopy](/func?id=slicecopy) to create a copy.
+- The number of sent requests is now obtained via `CustomUrlFetchApp.getCountRequest`.
+- Bugfix: spotify get with 404 interrupted the script; lastfm with 500+ errors aborted the script.
+- Bugfix: separateArtists did not separate artists.
+- Many small fixes.
 
-## Версия 1.3.0
-- Обновлены: инструкция и видео по установке.
-- Функциям `removeTracks` и `removeArtists` добавлен аргумент `invert` (инверсия).
-- Подавление ошибок от lastfm, чтобы не прерывать исполнение скрипта.
-- Добавлено анонимное отслеживание распределения версий библиотеки через Google Forms. Отправляются значения версии и идентификатор скрипта. Чтобы иметь представление каково количество уникальных пользователей.
+## Version 1.3.0
+- Updated: instructions and video for installation.
+- Added `invert` (inverse) argument to` removeTracks` and `removeArtists` functions.
+- Suppression of errors from lastfm, so as not to interrupt the execution of the script.
+- Added anonymous tracking of the distribution of library versions via Google Forms. The version values ​​and script ID are sent. To have an idea of ​​how many unique users there are.
 
-## Версия 1.2.0
-- Добавлены `параметры` для отслеживания истории. Нужно сделать [миграцию](https://4pda.ru/forum/index.php?act=findpost&pid=102495416&anchor=migrate_params).
-- Лимит истории прослушиваний увеличен с 10 до 20 тысяч.
-- Трекам истории Lastfm добавляется дата прослушивания. Можно использовать `rangeDateRel`.
-- Механизм накопления прослушиваний Lastfm, если установить `параметры`. Чтобы вместо `Lastfm.getRecentTracks` с малым числом треков из-за лимитов, получать много и быстро.
-- Получать историю одной функцией `RecentTracks.get`, не зависимо от `параметров`, в том числе сводную из двух источников. В сводной удалены дубликаты, есть сортировка от свежих к старым прослушиваниям.
+## Version 1.2.0
+- Added `parameters` for tracking history. You need to do [migration] (https://w3bsit3-dns.com/forum/index.php?act=findpost&pid=102495416&anchor=migrate_params).
+- The listening history limit has been increased from 10 to 20 thousand.
+- Listening date is added to Lastfm history tracks. You can use `rangeDateRel`.
+- The mechanism of accumulation of Lastfm listens, if you set `parameters`. So that instead of `Lastfm.getRecentTracks` with a small number of tracks due to limits, you can get a lot and quickly.
+- Get history with one function `RecentTracks.get`, regardless of` parameters`, including summary from two sources. In the summary, duplicates are removed, there is a sorting from fresh to old auditions.
