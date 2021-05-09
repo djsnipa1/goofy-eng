@@ -1,8 +1,8 @@
 # Goofy
-Library for interaction [Spotify Web API](https://developer.spotify.com/documentation/web-api/) and [Google Apps Script](https://developers.google.com/apps-script). Based on the idea of the service[Smarter Playlists](http://smarterplaylists.playlistmachinery.com/about.html). The library seeks to bypass some shortcomings of the service, add new features and increase allowable limits. Besides Spotify, the source of tracks can be[Last.fm](https://chimildic.github.io/goofy/#/func?id=lastfm), [Yandex.Music](https://chimildic.github.io/goofy/#/func?id=yandex), [FM radio station tracklists](https://github.com/Chimildic/goofy/discussions/35).
+Library for interaction [Spotify Web API](https://developer.spotify.com/documentation/web-api/) and [Google Apps Script](https://developers.google.com/apps-script). Based on the idea of the service [Smarter Playlists](http://smarterplaylists.playlistmachinery.com/about.html). The library seeks to bypass some shortcomings of the service, add new features and increase allowable limits. Besides Spotify, the source of tracks can be [Last.fm](https://chimildic.github.io/goofy/#/func?id=lastfm), [Yandex.Music](https://chimildic.github.io/goofy/#/func?id=yandex), [FM radio station tracklists](https://github.com/Chimildic/goofy/discussions/35).
 
 ##What It Does
-In short, Goofy is a playlist building. It can collect tracks from various sources, pass feeds through many different sources and create/update a playlist on a schedule.
+In short, Goofy is a playlist builder. It can collect tracks from various sources, pass feeds through many different sources and create/update a playlist on a schedule.
 
 For example, a few short algorithms:
 - Merge daily mixes and remove previously listened tracks
@@ -32,4 +32,4 @@ Detailed description
 For help with the algorithm or errors, create a new topic [here](https://github.com/Chimildic/goofy/discussions).
 Detailed documentation available [here](https://chimildic.github.io/goofy/). Before asking any questions, please read through it.
 
-[☕ support the project](https://yoomoney.ru/to/410014208620686)
+[☕ Support the project](https://yoomoney.ru/to/410014208620686)
