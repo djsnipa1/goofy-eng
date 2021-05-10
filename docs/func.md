@@ -1,6 +1,6 @@
 # List of functions
 
-## ENG
+# ENG
 
 ### Source
 
@@ -133,7 +133,7 @@ Example 2 - Get the top tracks from the last several years
 ```js
 let tracks = Source.getTopTracks('long');
 ```
-## Still RU
+# Still RU
 
 ### getSavedTracks
 
