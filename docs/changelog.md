@@ -17,14 +17,14 @@ To add your own functions or override existing ones, use the [instructions](http
 
 ## Version 1.4.5
 - Now [mineTracks](/func?id=minetracks) can search for keywords in album titles and in the tracks themselves.
-- In `mineTracks`, the` playlistCount` argument is ** renamed ** to `itemCount`.
+- In `mineTracks`, the` playlistCount` argument is **renamed** to `itemCount`.
 - New function for Filter: [replaceWithSimilar](/func?id=replacewithsimilar).
 - New function for Lastfm: [getSimilarArtists](/func?id=getsimilarartists).
 
 ## Version 1.4.4
 - New filter [removeUnavailable](/func?id=removeunavailable).
 - `Cache` can read / write files with the extension` .txt` when explicitly specified in the file name.
-- `getCustomTop` supports the` Date` type, [more] (https://github.com/Chimildic/goofy/discussions/46#discussioncomment-351974).
+- `getCustomTop` supports the` Date` type, [more](https://github.com/Chimildic/goofy/discussions/46#discussioncomment-351974).
 - Correction of a logical error in `match` when selecting.
 
 ## Version 1.4.3
@@ -43,12 +43,12 @@ To add your own functions or override existing ones, use the [instructions](http
 
 ## Version 1.4.1
 - Speed ​​up the execution time of the `craftTracks` function.
-- Found an undocumented Spotify API feature. The [getRecomTracks](/func?id=getrecomtracks) function supports the popularity key. Therefore, it is ** removed ** from [craftTracks](/func?id=crafttracks). Move it to the `query` parameter if used.
+- Found an undocumented Spotify API feature. The [getRecomTracks](/func?id=getrecomtracks) function supports the popularity key. Therefore, it is **removed** from [craftTracks](/func?id=crafttracks). Move it to the `query` parameter if used.
 - Added the ability to sort by the release date of the album to which the track belongs to `Order.sort`.
 - `displayAuthResult`,` updateRecentTracks`, `logProperties` are hidden from the list of functions that can be set to trigger.
 
 ## Version 1.4.0
-- ** Removed ** function `Source.getRecentTracks`. Use `RecentTracks.get` or` Cache.read` for the desired history file.
+- **Removed** function `Source.getRecentTracks`. Use `RecentTracks.get` or` Cache.read` for the desired history file.
 - New functions for Source: [mineTracks](/func?id=minetracks), [craftTracks](/func?id=crafttracks).
 - New function for RecentTracks: [appendTracks](/func?id=appendtracks).
 - The structure of the `SpotifyRecentTracks` file has been updated to a regular array of tracks (like the rest of the history files). The update will happen automatically the first time the trigger is run. Until then, `Cache.read` will return the old structure.
@@ -81,7 +81,7 @@ To add your own functions or override existing ones, use the [instructions](http
 ## Version 1.3.1
 - New functions for the Cache module: [rename](/func?id=rename), [remove](/func?id=remove), [clear](/func?id=clear), [compressArtists](/func?id=compressArtists).
 - Functions became public: [getArtists](/func?id=getartists), [getArtistsAlbums](/func?id=getartistsalbums), [getAlbumTracks](/func?id=getalbumtracks).
-- The getTracksArtists ** function has been renamed ** to getArtistsTracks.
+- The getTracksArtists **function has been renamed** to getArtistsTracks.
 - Calling getSavedTracks again in the same script sends new requests to Spotify, instead of returning the previously received one. Use [sliceCopy](/func?id=slicecopy) to create a copy.
 - The number of sent requests is now obtained via `CustomUrlFetchApp.getCountRequest`.
 - Bugfix: spotify get with 404 interrupted the script; lastfm with 500+ errors aborted the script.
@@ -95,7 +95,7 @@ To add your own functions or override existing ones, use the [instructions](http
 - Added anonymous tracking of the distribution of library versions via Google Forms. The version values ​​and script ID are sent. To have an idea of ​​how many unique users there are.
 
 ## Version 1.2.0
-- Added `parameters` for tracking history. You need to do [migration] (https://w3bsit3-dns.com/forum/index.php?act=findpost&pid=102495416&anchor=migrate_params).
+- Added `parameters` for tracking history. You need to do [migration](https://w3bsit3-dns.com/forum/index.php?act=findpost&pid=102495416&anchor=migrate_params).
 - The listening history limit has been increased from 10 to 20 thousand.
 - Listening date is added to Lastfm history tracks. You can use `rangeDateRel`.
 - The mechanism of accumulation of Lastfm listens, if you set `parameters`. So that instead of `Lastfm.getRecentTracks` with a small number of tracks due to limits, you can get a lot and quickly.
