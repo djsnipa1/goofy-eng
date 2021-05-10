@@ -1,50 +1,50 @@
-# Список функций
+# List of functions
 
 ## Source
 
-Источник получения треков Spotify
+Source for getting Spotify tracks
 
 ### getTracks
 
-Возвращает массив треков из одного и более плейлистов.
+Returns an array of tracks from one or more playlists.
 
-Аргументы
-- (массив) `playlistArray` - один и более плейлист. 
+Arguments
+- (array) `playlistArray` - one or more playlists. 
 
-Формат одного плейлиста
-- `id` - [идентификационный номер плейлиста](/guide?id=Плейлист).
-- `userId` - [идентификационный номер пользователя](/guide?id=Пользователь).
-- `name` - имя плейлиста.
+Single playlist format
+- `id` - [playlist id](/guide?id=Плейлист).
+- `userId` - [user identification number](/guide?id=Пользователь).
+- `name` - Playlist name.
 
-| id | name | userId | Действие |
+| id | name | userId | Action |
 |:-:|:-:|:-:|:-|
-| ✓ | ☓ | ☓ | Взять плейлист с указанным id |
-| ☓ | ✓ | ☓ | Поиск плейлиста по имени среди ваших |
-| ☓ | ✓ | ✓ | Поиск плейлиста по имени у пользователя |
+| ✓ | ☓ | ☓ | Take a playlist with the specified id |
+| ☓ | ✓ | ☓ | Search for a playlist by name only |
+| ☓ | ✓ | ✓ | Search  for playlist by name from username |
 
-> 💡 Рекомендуется всегда указывать `id` и `name`. Наиболее быстрый и удобный способ.
+> 💡 It is recommended to always include `id` and `name`. Doing so is faster and more accurate.
 
-> ❗️ Если указано `name` без `id` и есть несколько плейлистов с таким именем, вернутся треки из первого встретившегося.
+> ❗️ If `name` is specified without `id` and there are several playlists with the same name, the tracks from the first playlist list will be returned.
 > 
->  Когда плейлист не найден, вернется пустой массив.
+> When no playlist is found, an empty array will be returned.
 
-Пример 1 - Получить треки двух плейлистов по `id`. Значение `name` необязательно. Указывается для удобства.
+Example 1 - Get tracks from two playlists by `id`. The `name` value is optional. Indicated for convenience.
 ```js
 let tracks = Source.getTracks([
-  { name: 'Главные хиты', id: '37i9dQZF1DX12G1GAEuIuj' },
-  { name: 'Кардио', id: '37i9dQZF1DWSJHnPb1f0X3' },
+  { name: 'Top hits', id: '37i9dQZF1DX12G1GAEuIuj' },
+  { name: 'Cardio', id: '37i9dQZF1DWSJHnPb1f0X3' },
 ]);
 ```
 
-Пример 2 - Получить треки личных плейлистов The Best и Саундтреки.
+Example 2 - Retrieve tracks from `The Best` Playlist and tracks and `Soundtracks`.
 ```js
 let tracks = Source.getTracks([
   { name: 'The Best' },
-  { name: 'Саундтреки' },
+  { name: 'Soundtracks' },
 ]);
 ```
 
-Пример 3 - Получить треки плейлиста с названием mint у пользователя spotify.
+Example 3 - Get the tracks of a playlist named `mint` from a specific spotify user.
 ```js
 let tracks = Source.getTracks([
   { name: 'mint', userId: 'spotify' },
@@ -53,53 +53,54 @@ let tracks = Source.getTracks([
 
 ### getTracksRandom
 
-Возвращает массив треков из одного и более плейлистов. Плейлисты выбираются случайным образом. 
+Returns an array of tracks from one or more playlists. Playlists are randomly selected.
 
-Аргументы
-- (массив) `playlistArray` - один и более плейлист. Аналогично [getTracks](/func?id=gettracks).
-- (число) `countPlaylist` - количество случайно выбираемых плейлистов. По умолчанию один.
+Arguments
+- (array) `playlistArray` - one or more playlists. Same as [getTracks](/func?Id=gettracks).
+- (number) `countPlaylist` - the number of randomly selected playlists. The default is one.
 
-Пример 1 - Получить треки одного случайно выбранного плейлиста из трех.
+Example 1 - Get tracks of one randomly selected playlist out of three.
 ```js
 let tracks = Source.getTracksRandom([
-  { name: 'Главные хиты', id: '37i9dQZF1DX12G1GAEuIuj' },
-  { name: 'Кардио', id: '37i9dQZF1DWSJHnPb1f0X3' },
-  { name: 'Темная сторона', id: '37i9dQZF1DX73pG7P0YcKJ' },
+  { name: 'Top hits', id: '37i9dQZF1DX12G1GAEuIuj' },
+  { name: 'Cardio', id: '37i9dQZF1DWSJHnPb1f0X3' },
+  { name: 'Dark Side', id: '37i9dQZF1DX73pG7P0YcKJ' },
 ]);
 ```
 
-Пример 2 - Получить треки двух случайно выбранных плейлистов из трех.
+Example 2 - Get tracks from two randomly selected playlists from three.
 ```js
 let playlistArray = [
-  { name: 'Главные хиты', id: '37i9dQZF1DX12G1GAEuIuj' },
-  { name: 'Кардио', id: '37i9dQZF1DWSJHnPb1f0X3' },
-  { name: 'Темная сторона', id: '37i9dQZF1DX73pG7P0YcKJ' },
+  { name: 'Top hits хиты', id: '37i9dQZF1DX12G1GAEuIuj' },
+  { name: 'Cardio', id: '37i9dQZF1DWSJHnPb1f0X3' },
+  { name: 'Dark Side', id: '37i9dQZF1DX73pG7P0YcKJ' },
 ];
 let tracks = Source.getTracksRandom(playlistArray, 2);
 ```
 
 ### getPlaylistTracks
 
-Возвращает массив треков из одного плейлиста. Аналогично [getTracks](/func?id=gettracks) с одним плейлистом.
+Returns an array of tracks from one playlist. Similar to [getTracks](/func?id=gettracks) but for a single playlist.
 
-Аргументы
-- (строка) `name` - имя плейлиста.
-- (строка) `id` - [идентификационный номер плейлиста](/guide?id=Плейлист).
-- (строка) `user` - [идентификационный номер пользователя](/guide?id=Пользователь). По умолчанию ваш.
+Arguments
+- (string) `name` - playlist name.
+- (string) `id` - [playlist id](/guide?id=Плейлист).
+- (string) `user` - [user id](/guide?id=Пользователь). The default is yours.
 
-Пример 1 - Получить треки одного плейлиста
+Example 1 - Get tracks from one playlist
 ```js
-let tracks = Source.getPlaylistTracks('Заблокированный треки', 'abcdef');
+let tracks = Source.getPlaylistTracks('Locked Tracks', 'abcdef');
 ```
 
 ### getTopArtists
 
-Возвращает топ исполнителей за выбранный период. До 98 исполнителей. 
+Returns the top artists for the selected period. 
+> Up to 98 artists can be returned.
 
-Аргументы
-- (строка) `timeRange` - период. По умолчанию `medium`. Возможные значения приведены в [getTopTracks](/func?id=gettoptracks).
+Arguments
+- (string) `timeRange` - period. The default is `medium`. Possible values ​​are given in [getTopTracks](/func?id=gettoptracks).
 
-Пример 1 - Получить топ треков от топ 10 исполнителей
+Example 1 - Get top tracks from the top 10 artists
 ```js
 let artists = Source.getTopArtists('long');
 Selector.keepFirst(artists, 10);
@@ -108,28 +109,29 @@ let tracks = Source.getArtistsTopTracks(artists);
 
 ### getTopTracks
 
-Возвращает массив треков с топом прослушиваний за выбранный период. До 98 треков.
+Returns an array of top-listened tracks for the selected period. Up to 98 tracks.
 
-Аргументы
-- (строка) `timeRange` - период. По умолчанию `medium`.
+Arguments
+- (string) `timeRange` - period. The default is `medium`.
 
-|timeRange|Период|
+|timeRange|Period|
 |-|-|
-| short | Примерно последний месяц |
-| medium | Примерно последние 6 месяцев |
-| long | За несколько лет |
+| short | About the last month |
+| medium | About the last 6 months |
+| long | About the last several years |
 
-> ❗️ Такие треки не содержат информации о дате добавления. При использовании [rangeDateRel](/func?id=rangedaterel) или [rangeDateAbs](/func?id=rangedateabs) им присваивается дата 01.01.2000
+> ❗️ When using [rangeDateRel](/func?id=rangedaterel) or [rangeDateAbs](/func?id=rangedateabs), any tracks that do not contain information about the date of addition will be assigned the date 01.01.2000.
 
-Пример 1 - Получить топ за последний месяц.
+Example 1 - Get the tracks from the last month.
 ```js
 let tracks = Source.getTopTracks('short');
 ```
 
-Пример 2 - Получить топ за несколько лет.
+Example 2 - Get the top tracks from the last several years
 ```js
 let tracks = Source.getTopTracks('long');
 ```
+# Still RU
 
 ### getSavedTracks
 
