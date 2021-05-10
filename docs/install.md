@@ -57,11 +57,11 @@ Executed once.
 
    ![Copy link](/img/install-step-link_eng.png)
 
-8. In a ** new tab ** follow the copied link. On the page that opens, copy the link at the bottom of the page. Ends with `usercallback`.
+8. In a **new tab** follow the copied link. On the page that opens, copy the link at the bottom of the page. Ends with `usercallback`.
 
    ![Callback link](/img/install-step-callback-link.png)
 
-9. Return to [Spotify Dashboad] (https://developer.spotify.com/dashboard/). Press the `EDIT SETTINGS` button for your application.
+9. Return to [Spotify Dashboad](https://developer.spotify.com/dashboard/). Press the `EDIT SETTINGS` button for your application.
     
     Paste the copied link from step 8 into the `Redirect URIs` field. Press the` ADD` button. Then at the bottom the `Save` button.
     
@@ -71,11 +71,11 @@ Executed once.
 
     Click the `Authorize` button.
 
-    ! [Callback-link] (/img/install-step-callback-link.png)
+    ![Callback-link](/img/install-step-callback-link.png)
 
     Allow access to your Spotify account.
 
-    ! [Spotify Permissions] (/img/install-step-grant-spotify_eng.png)
+    ![Spotify Permissions](/img/install-step-grant-spotify_eng.png)
 
     Words of successful completion should appear.
 
@@ -85,7 +85,7 @@ Executed once.
 
 If not used, do not need to be performed.
 
-1. Create an entry point [here] (https://www.last.fm/api/account/create). Fill in the title and description arbitrarily. Skip the rest, leave blank.
+1. Create an entry point [here](https://www.last.fm/api/account/create). Fill in the title and description arbitrarily. Skip the rest, leave blank.
 2. Assign the received `API key` to the parameter` LASTFM_API_KEY`.
 3. Start execution of the `setProperties` function in the editor.
 
@@ -93,7 +93,7 @@ If not used, do not need to be performed.
 
 ## Refresh library
 
-1. Replace the entire contents of the `library.gs` file with a new one (Ctrl + A, Ctrl + V) taken from [here] (https://github.com/Chimildic/goofy/blob/main/library.js) or [here] (https://script.google.com/d/1DnC4H7yjqPV2unMZ_nmB-1bDSJT9wQUJ7Wq-ijF4Nc7Fl3qnbT0FkPSr/edit?usp=sharing) (Ctrl + A, Ctrl + C)
+1. Replace the entire contents of the `library.gs` file with a new one (Ctrl + A, Ctrl + V) taken from [here](https://github.com/Chimildic/goofy/blob/main/library.js) or [here](https://script.google.com/d/1DnC4H7yjqPV2unMZ_nmB-1bDSJT9wQUJ7Wq-ijF4Nc7Fl3qnbT0FkPSr/edit?usp=sharing) (Ctrl + A, Ctrl + C)
 2. Save the file: `File` -` Save` or Ctrl + S
 
 ## Update parameters
