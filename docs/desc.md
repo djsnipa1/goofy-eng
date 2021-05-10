@@ -1,4 +1,4 @@
-## Определения
+## Services
 
 Goofy - library for interaction [Spotify Web API] (https://developer.spotify.com/documentation/web-api/) and [Google Apps Script] (https://developers.google.com/apps-script). It is based on the idea of the [Smarter Playlists] service (http://smarterplaylists.playlistmachinery.com/about.html). The library seeks to eliminate the shortcomings of the service, add new features and increase the allowable limits.
 
