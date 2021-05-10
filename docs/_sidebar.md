@@ -1,5 +1,5 @@
 - [Description](/desc.md)
-- **Fast start**
+- **Quick start**
 - [Installation](/install.md)
 - [First Playlist](/first-playlist.md)
 - **Directory**
