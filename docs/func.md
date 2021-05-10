@@ -133,60 +133,59 @@ Example 2 - Get the top tracks from the last several years
 ```js
 let tracks = Source.getTopTracks('long');
 ```
-# Still RU
 
 ### getSavedTracks
 
-Возвращает массив любимых треков (лайков).
+Returns an array of your favorite tracks (likes).
 
-Аргументов нет.
+There are no arguments.
 
-> 💡 Если у вас много любимых треков и в скрипте нужно выполнить разные действия над ними, создайте копию массива [sliceCopy](/func?id=slicecopy) вместо новых запросов к Spotify.
+> 💡 If you have a large numebr of favorite tracks and need to perform several actions with them in the script, create a copy of the [sliceCopy](/func?Id=slicecopy) array to avoid creating new requests to Spotify.
 
-Пример 1 - Получить массив любимых треков.
+Example 1 - Get an array of favorite tracks.
 ```js
 let tracks = Source.getSavedTracks();
 ```
 
 ### getSavedAlbumTracks
 
-Возвращает массив треков со всех сохраненных альбомов. Можно задать выбор альбомов случайным образом.
+Returns an array of tracks from all saved albums. Albums can be selected randomly.
 
-Аргументы:
-- (число) `limit` - если используется, альбомы выбираются случайно до указанного значения.
+Arguments:
+- (number) `limit` - if used, the albums are randomly selected up to the specified value.
 
-Пример 1 - Получить треки трех случайных альбомов
+Example 1 - Get tracks from three random albums
 ```js
 let tracks = Source.getSavedAlbumTracks(3);
 ```
 
-Пример 2 - Получить треки из всех сохраненных альбомов
+Example 2 - Retrieve tracks from all saved albums
 ```js
 let tracks = Source.getSavedAlbumTracks();
 ```
 
 ### getFollowedTracks
 
-Возвращает массив треков отслеживаемых плейлистов и/или личных плейлистов указанного пользователя.
+Returns an array of tracks of the tracked playlists and / or personal playlists of the specified user.
 
-> 💡 Если нужно выполнить разные действия над источником, создайте копию массива [sliceCopy](/func?id=slicecopy) вместо новых запросов к Spotify через getFollowedTracks.
+> 💡 If you need to perform multiple requests on the source, create a copy of the [sliceCopy](/func?Id=slicecopy) array instead of sending multple new requests to Spotify via getFollowedTracks.
 
-Аргументы
-- (объект) `params` - аргументы отбора плейлистов.
+Arguments
+- (object) `params` - playlist selection arguments.
 
-Описание ключей
-- (строка) `type` - тип выбираемых плейлистов. По умолчанию `followed`.
-- (строка) `userId` - [идентификатор пользователя](#идентификатор). Если не указан, устанавливается `userId` авторизированного пользователя, то есть ваш.
-- (число) `limit` - если используется, плейлисты выбираются случайным образом.
-- (массив) `exclude` - перечень плейлистов, которые нужно исключить. Значимо только `id`. Значение `name` необязательно, нужно лишь для понимания какой это плейлист. Можно обойтись комментарием.
+Description of keys
+- (string) `type` - The type of playlists to be selected. The default is `followed`.
+- (string) `userId` - A specific [user id](#id). If not specified, the `userId` of the authorized user is set (ie - yours).
+- (number) `limit` - If used, playlists are randomly selected.
+- (array) `exclude` - List of playlists to exclude. Only `id` is needed. The value of `name` is optional, it is only needed to understand which playlist it is. You can get by with a comment.
 
-|type|Выбор|
-|-|-|
-| owned | Только личные плейлисты |
-| followed | Только отслеживаемые плейлисты |
-| all | Все плейлисты |
+| type | Selection |
+| - | - |
+| owned | Personal playlists only |
+| followed | Tracked playlists only |
+| all | All playlists |
 
-Полный объект `params`
+The complete `params` object
 ```js
 {
     type: 'followed',
@@ -199,18 +198,18 @@ let tracks = Source.getSavedAlbumTracks();
 }
 ```
 
-Пример 1 - Получить треки только из моих отслеживаемых плейлистов.
+Example 1 - Get tracks only from my tracked playlists.
 ```js
-// Все значения по умолчанию, аргументы не указываются
+// Default values, no arguments specified
 let tracks = Source.getFollowedTracks();
 
-// Тоже самое с явным указанием типа плейлистов
+// The same with an explicit indication of the 'type' of playlists
 let tracks = Source.getFollowedTracks({
     type: 'followed',
 });
 ```
 
-Пример 2 - Получить треки только двух случайно выбранных личных плейлистов пользователя `example`, исключая несколько плейлистов по их id. 
+Example 2 - Randomly select two personal playlists from the user `example`, excluding several playlists by their id. 
 ```js
 let tracks = Source.getFollowedTracks({
     type: 'owned',
@@ -223,33 +222,32 @@ let tracks = Source.getFollowedTracks({
 });
 ```
 
-> ❗️ Следует избегать пользователей со слишком большим количеством плейлистов. Например, `glennpmcdonald` почти с 5 тысячами плейлистов. Ограничение связано с квотой на выполнение в Apps Script. За отведенное время не удастся получить такой объем треков. Подробнее в [описании ограничений](/desc?id=Ограничения).
+> ❗️ Due to restrictions in the Apps Script execution quota, avoid users with too many playlists. For example, `glennpmcdonald` has almost 5 thousand playlists. It will not be possible to get this volume of tracks in the allotted time. More details in [description of restrictions](/desc?Id=Restrictions).
 
 
 ### getRecomTracks
+Returns an array of recommended tracks according to the specified parameters. Up to 100 tracks.
 
-Возвращает массив рекомендованных треков по заданным параметрам. До 100 треков.
+> Spotify note: for new or little-known artists, tracks - there may not be enough accumulated data to generate recommendations. 
 
-> Примечание Spotify: для новых или малоизвестных исполнителей, треков - может быть недостаточно накопленных данных для генерации рекомендаций. 
+Arguments
+- (object) `queryObj` - parameters for selecting recommendations.
 
-Аргументы
-- (объект) `queryObj` - параметры для отбора рекомендаций.
+Valid parameters
+- limit - the number of tracks. Maximum 100.
+- seed_* - up to **5 values** in any combinations:
+- seed_artists - [artist IDs](/guide?id=ID), separated by commas.
+- seed_tracks - [track IDs](/guide?id=ID), separated by commas.
+- seed_genres - genres separated by commas. For allowed values ​​look [here](/guide?Id=Genres-to-select-recommendations).
+- max_* - limit value of one of the [features of the track](/guide?id=Features-track-features).
+- min_* - the minimum value of one of the [features of the track](/guide?id=Track-features).
+- target_* - the target value for one of the [features of the track](/guide?id=Track-features). The closest ones are selected.
 
-Допустимые параметры
-- limit - количество треков. Максимум 100.
-- seed_* - до **5 значений** в любых комбинациях:
-  - seed_artists - [идентификаторы исполнителей](/guide?id=Идентификатор), разделенных запятой.
-  - seed_tracks - [идентификаторы треков](/guide?id=Идентификатор), разделенных запятой.
-  - seed_genres - жанры, разделенные запятой. Допустимые значения смотреть [здесь](/guide?id=Жанры-для-отбора-рекомендаций).
-- max_* - предельное значение одной из [особенностей (features) трека](/guide?id=Особенности-трека-features).
-- min_* - минимальное значение одной из [особенностей (features) трека](/guide?id=Особенности-трека-features).
-- target_* - целевое значение одной из [особенностей (features) трека](/guide?id=Особенности-трека-features). Выбираются наиболее близкие по значению.
+> In addition, the `populatiry` key is available in` features`. For example, `target_popularity`. The Spotify API documentation doesn't say this.
 
-> Кроме того, в `features` доступен ключ `populatiry`. Например, `target_popularity`. В документации к API Spotify этого не написано.
+> Specifying a specific genre in `seed_genres` will not necessarily return tracks of that genre.
 
-> Указание конкретного жанра в `seed_genres` необязательно вернет треки данного жанра.
-
-Пример объекта с параметрами
+Example of an object with parameters
 ```js
 let queryObj = {
       seed_artists: '',
@@ -261,7 +259,7 @@ let queryObj = {
 };
 ```
 
-Пример 1 - Получить рекомендации по жанру инди и альтернативы с позитивным настроением:
+Example 1 - Get recommendations for the `indie` and `alternative` with the measure of 'happieness' (valence) set to a positive level:
 ```js
 let tracks = Source.getRecomTracks({
       seed_genres: 'indie,alternative',
@@ -269,7 +267,7 @@ let tracks = Source.getRecomTracks({
 });
 ```
 
-Пример 2 - Получить рекомендации в жанре рок и электроники на основе 3 случайных любимых исполнителей (до 5 значений).
+Example 2 - Get `rock` and `electronic` recommendations based on 3 random favorite artists (up to 5 values).
 ```js
 let savedTracks = Source.getSavedTracks();
 Selector.keepRandom(savedTracks, 3);
@@ -281,6 +279,7 @@ let tracks = Source.getRecomTracks({
       seed_genres: 'rock,electronic'
 });
 ```
+# RU
 
 ### getRelatedArtists
 
