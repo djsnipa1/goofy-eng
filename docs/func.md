@@ -36,7 +36,7 @@ let tracks = Source.getTracks([
 ]);
 ```
 
-Example 2 - Retrieve tracks from `The Best` Playlist and tracks and `Soundtracks`.
+Example 2 - Retrieve tracks from `The Best` playlist and tracks and `Soundtracks`.
 ```js
 let tracks = Source.getTracks([
   { name: 'The Best' },
@@ -131,7 +131,7 @@ Example 2 - Get the top tracks from the last several years
 ```js
 let tracks = Source.getTopTracks('long');
 ```
-# Still RU
+## Still RU
 
 ### getSavedTracks
 
