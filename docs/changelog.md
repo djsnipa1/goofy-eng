@@ -10,6 +10,7 @@ To add your own functions or override existing ones, use the [instructions](http
 
 ## Version 1.4.7
 - Experiment. In case of an unknown error on the part of Google while writing via `Cache.write`, the write is retry after a pause.
+- [12.05.21] Bugfix: incorrect sorting of artist tracks
 
 ## Version 1.4.6
 - New function [getPlayingTrack](/func?id=getplayingtrack). Requires [update permissions](/install?id=Обновить-права-доступа).
