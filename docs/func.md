@@ -279,66 +279,67 @@ let tracks = Source.getRecomTracks({
       seed_genres: 'rock,electronic'
 });
 ```
-# RU
 
 ### getRelatedArtists
 
-Возвращает массив похожих исполнителей по данным Spotify.
+> Need to test to better understand translation
 
-Аргументы
-- (массив) `artists` - перечень исполнителей, для которых получить похожих. Значимо только `id`.
-- (бул) `isFlat` - если `false` результат содержит исполнителей в отдельном массиве. Если `true` все исполнители в одном массиве. По умолчанию `true`.
+Returns an array of similar artists from Spotify.
 
-Пример 1 - `isFlat = true`
+Arguments
+- (array) `artists` - a list of artists for who you are getting simmilar ones too. Only `id` is meaningful.
+- (bool) `isFlat` - if `false` the result contains executors in a separate array. If true, all executors are in the same array. The default is `true`.
+
+Example 1 - `isFlat = true`
 ```js
 let relatedArtists = Source.getRelatedArtists(artists);
-relatedArtists[0]; // первый исполнитель
-relatedArtists[10]; // 11 исполнитель
+relatedArtists[0]; // 1 artist
+relatedArtists[10]; // 11 artists
 ```
 
-Пример 2 - `isFlat = false`
+Example 2 - `isFlat = false`
 ```js
 let relatedArtists = Source.getRelatedArtists(artists, false);
-relatedArtists[0][0]; // первый исполнитель, похожие на первого из источника
-relatedArtists[1][0]; // первый исполнитель, похожие на второго из источника
+relatedArtists[0][0]; // first performer, similar to first from source
+relatedArtists[1][0]; // the first performer, similar to the second from the source
 ```
 
 ### getCategoryTracks
 
-Возвращает массив треков из плейлистов указанной категории. Сортировка плейлистов по популярности. [Список категорий](/guide?id=Категории-плейлистов).
+Returns an array of tracks from playlists in the specified category. Sort playlists by popularity. [Category list](/guide?Id=Playlistcategories).
 
-Аргументы
-- (строка) `category_id` - имя категории.
-- (объект) `params` - дополнительные параметры.
+Arguments
+- (string) `category_id` - category name.
+- (object) `params` - additional parameters.
 
-Описание `params`
-- (число) `limit` - ограничить число выбираемых плейлистов. Максимум 50, по умолчанию 20.
-- (число) `offset` - пропустить указанное число треков. По умолчанию 0.
-- (строка) `country` - название страны, в которой смотреть плейлисты категории. Например, `RU` или `AU`.
+Description of `params`
+- (number) `limit` - limit the number of selectable playlists. Maximum 50, default 20.
+- (number) `offset` - skip the specified number of tracks. The default is 0.
+- (string) `country` - the name of the country in which to watch the playlists of the category. For example, `RU` or `AU`.
 
-Пример 1 - Получить треки второй десятки плейлистов категории "фокус" из Австралии.
+Example 1 - Get the tracks of the second ten playlists of the "focus" category from Australia.
 ```js
 let tracks = Source.getCategoryTracks('focus', { limit: 10, offset: 10, country: 'AU' });
 ```
 
-Пример 2 - Получить треки 20 плейлистов в категории вечеринки.
+Example 2 - Get the tracks of 20 playlists in the party category.
 ```js
 let tracks = Source.getCategoryTracks('party');
 ```
 
 ### getListCategory
 
-Возвращает массив допустимых категорий для [getCategoryTracks](/func?id=getcategorytracks).
+Returns an array of valid categories for [getCategoryTracks](/func?id=getcategorytracks).
 
-Аргументы
-- (объект) `params` - параметры отбора категорий.
+Arguments
+- (object) `params` - parameters for selecting categories.
 
-Описание `params`
-- (число) `limit` - ограничить число выбираемых категорий. Максимум 50, по умолчанию 20.
-- (число) `offset` - пропустить указанное число категорий. По умолчанию 0. Используется для получения категорий после 50+.
-- (строка) `country` - название страны, в которой смотреть категории. Например, `RU` или `AU`. Если нет, глобально доступные. Но возможна ошибка доступности. Чтобы не получить ошибки, указывайте одинаковые `country` для списка категорий и запроса плейлистов. 
+Description of `params`
+- (number) `limit` - limit the number of selected categories. Maximum 50, default 20.
+- (number) `offset` - skip the specified number of categories. The default is 0. Used to get categories after 50+.
+- (string) `country` - the name of the country in which to view the categories. For example, `RU` or` AU`. If not, globally available. But availability error is possible. To avoid getting errors, specify the same `country` for the list of categories and the request for playlists.
 
-Пример 1 - Получить треки 10 плейлистов из случайной категории
+Example 1 - Get tracks of 10 playlists from a random category
 ```js
 let listCategory = Source.getListCategory({ limit: 50, country: 'RU' });
 let category = Selector.sliceRandom(listCategory, 1);
@@ -347,12 +348,12 @@ let tracks = Source.getCategoryTracks(category[0].id, { limit: 10, country: 'RU'
 
 ### getArtists
 
-Возвращает массив исполнителей согласно заданным `paramsArtist`.
+Returns an array of artists according to the given `paramsArtist`.
 
-Аргументы
-- (объект) `paramsArtist` - перечень критериев отбора исполнителей. Объект соответствует описанию из [getArtistsTracks](/func?id=getartiststracks) в части исполнителя.
+Arguments
+- (object) `paramsArtist` - list of criteria for selecting artists. The object matches the description from [getArtistsTracks](/func?Id=getartiststracks) in the artist part.
 
-Пример 1 - Получить массив отслеживаемых исполнителей
+Example 1 - Get an array of tracked artists
 ```js
 let artists = Source.getArtists({
     followed_include: true,
@@ -361,13 +362,13 @@ let artists = Source.getArtists({
 
 ### getArtistsAlbums
 
-Возвращает массив со всеми альбомами указанных исполнителей.
+Returns an array with all the albums of the specified artists.
 
-Аргументы
-- (массив) `artists` - массив исполнителей
-- (объект) `paramsAlbum` - перечень критериев отбора альбомов. Объект соответствует описанию из [getArtistsTracks](/func?id=getartiststracks) в части альбома.
+Arguments
+- (array) `artists` - array of artists
+- (object) `paramsAlbum` - list of album selection criteria. The object matches the description from [getArtistsTracks](/func?Id=getartiststracks) in the album part.
 
-Пример 1 - Получить массив синглов одного исполнителя
+Example 1 - Get an array of singles from one artist
 ```js
 let artist = Source.getArtists({
     followed_include: false,
@@ -382,27 +383,27 @@ let albums = Source.getArtistsAlbums(artist, {
 
 ### getArtistsTracks
 
-Возвращает массив треков исполнителей согласно заданным `params`.
+Returns an array of artist tracks according to the given `params`.
 
-> ❗️ В выборку попадает множество альбомов. Особенно при большом количестве отслеживаемых исполнителей (100+). Для сокращения времени выполнения используйте фильтры для исполнителя и альбома. Можно указать случайный выбор N-количества.
+> ❗️ The selection includes many albums. Especially with a large number of tracked performers (100+). Use filters for artist and album to shorten execution time. You can specify a random selection of N-number.
 
-Аргументы
-- (объект) `params` - перечень критериев отбора исполнителей и их треков
+Arguments
+- (object) `params` - a list of criteria for selecting performers and their tracks
 
-| Ключ | Тип | Описание |
-|-|-|-|
-| followed_include | бул | При `true` включает отслеживаемых исполнителей. При `false` исполнители берутся только из `include` |
-| include | массив | Выборка исполнителей по `id` для получения альбомов. Ключ `name` для удобства и необязателен.  |
-| exclude | массив | Выборка исполнителей по `id` для исключения исполнителей из выборки. Использовать в комбинации с `followed_include` |
-| popularity | объект | Диапазон популярности исполнителя |
-| followers | объект | Диапазон количества фолловеров исполнителя |
-| genres | массив | Перечень жанров. Если хотя бы один есть, исполнитель проходит фильтр.  |
-| ban_genres | массив | Перечень жанров для блокировки. Если хотя бы один есть, исполнитель удаляется из выборки. |
-| groups | строка | Тип альбома. Допустимо: `album`, `single`, `appears_on`, `compilation` |
-| release_date | объект | Дата выхода альбома. Относительный период при `sinceDays` и `beforeDays`. Абсолютный период при `startDate` и `endDate` |
-| _limit | число | Если указано, выбирается случайное количество указанных элементов (artist, album, track) |
+| Key | Type | Description |
+| - | - | - |
+| followed_include | bul | If true, includes tracked artists. If `false`, executors are taken only from` include` |
+| include | array | Selecting artists by `id` to get albums. The `name` key is for convenience and optional. |
+| exclude | array | Selection of performers by `id` to exclude performers from the selection. Use in combination with `followed_include` |
+| popularity | object | Artist popularity range |
+| followers | object | Artist follower range |
+| genres | array | List of genres. If at least one is present, the performer passes the filter. |
+| ban_genres | array | List of genres to block. If at least one is present, the executor is removed from the selection. |
+| groups | string | Album type. Valid: `album`,` single`, `appears_on`,` compilation` |
+| release_date | object | Album release date. The relative period for `sinceDays` and` beforeDays`. Absolute period at `startDate` and` endDate` |
+| _limit | number | If specified, a random number of specified items is selected (artist, album, track) |
 
-Пример объекта `params` со всеми ключами
+An example of a `params` object with all keys
 ```js
 {
     artist: {
@@ -431,7 +432,7 @@ let albums = Source.getArtistsAlbums(artist, {
 }
 ```
 
-Пример 1 - Получить треки из синглов отслеживаемых исполнителей, вышедших за последнюю неделю включая сегодня. Исключить несколько исполнителей.
+Example 1 - Get tracks from singles of tracked artists released in the last week including today. Exclude multiple performers.
 ```js
 let tracks = Source.getArtistsTracks({
     artist: {
@@ -448,7 +449,7 @@ let tracks = Source.getArtistsTracks({
 });
 ```
 
-Пример 2 - Получить треки из альбомов и синглов за неделю десяти отслеживаемых исполнителей, выбранных случайным образом. Исполнители с не более чем 10 тысячами подписчиков. Только один трек из альбома.
+Example 2 - Get tracks from albums and singles per week of ten tracked artists, selected at random. Artists with no more than 10 thousand subscribers. Only one track from the album.
 ```js
 let tracks = Source.getArtistsTracks({
     artist: {
@@ -464,7 +465,7 @@ let tracks = Source.getArtistsTracks({
 });
 ```
 
-Пример 3 - Получить треки из альбомов и синглов указанных исполнителей
+Example 3 - Get tracks from albums and singles of specified artists
 ```js
 let tracks = Source.getArtistsTracks({
     artist: {
@@ -482,37 +483,35 @@ let tracks = Source.getArtistsTracks({
 
 ### getArtistsTopTracks
 
-Возвращает топ треков исполнителя в виде массива. До 10 треков на исполнителя.
+Returns the top tracks of the artist as an array. Up to 10 tracks per artist.
 
-Аргументы
-- (массив) `artists` - массив исполнителей. Значимо только `id`.
-- (бул) `isFlat` - если `false` результат содержит треки в отдельном массиве для каждого исполнителя. Если `true` все треки в одном массиве. По умолчанию `true`.
+Arguments
+- (array) `artists` - an array of artists. Only `id` is meaningful.
+- (bool) `isFlat` - if` false`, the result contains tracks in a separate array for each artist. If `true` all tracks are in one array. The default is `true`.
 
-Пример 1 - `isFlat = true`
+Example 1 - `isFlat = true`
 ```js
 let tracks = Source.getArtistsTopTracks(artists);
-tracks[0]; // первый трек первого исполнителя
-tracks[10]; // первый трек второго исполнителя, если у первого 10 треков
+tracks[0]; // first track of the first artist
+tracks[10]; // the first track of the second artist, if the first has 10 tracks
 ```
 
-Пример 2 - `isFlat = false`
+Example 2 - `isFlat = false`
 ```js
 let tracks = Source.getArtistsTopTracks(artists, false);
-tracks[0][0]; // первый трек первого исполнителя
-tracks[1][0]; // первый трек второго исполнителя
+tracks[0][0]; // first track of the first artist
+tracks[1][0]; // first track of the second artist
 ```
-
-
 
 ### getAlbumTracks
 
-Возвращает массив треков указанного альбома.
+Returns an array of tracks from the specified album.
 
-Аргументы
-- (объект) `album` - объект одного альбома
-- (число) `limit` - если указано, выбирает треки случайно до указанного количества.
+Arguments
+- (object) `album` - object of one album
+- (number) `limit` - if specified, selects tracks randomly up to the specified number.
 
-Пример 1 - Получить треки первого альбома массива
+Example 1 - Get the tracks of the first album of an array
 ```js
 let albums = Source.getArtistsAlbums(artists, {
     groups: 'album',
@@ -520,7 +519,7 @@ let albums = Source.getArtistsAlbums(artists, {
 let albumTracks = Source.getAlbumTracks(albums[0]);
 ```
 
-Пример 2 - Получить треки из всех альбомов
+Example 2 - Get Tracks from All Albums
 ```js
 let albums = Source.getArtistsAlbums(artists, {
     groups: 'album',
@@ -531,12 +530,12 @@ albums.forEach((album) => Combiner.push(tracks, Source.getAlbumTracks(album)));
 
 ### getAlbumsTracks
 
-Возвращает массив треков из всех альбомов.
+Returns an array of tracks from all albums.
 
-Аргументы
-- (массив) `albums` - перечень альбомов
+Arguments
+- (array) `albums` - list of albums
 
-Пример 1 - Получить треки из топ-10 альбомов Lastfm
+Example 1 - Get Tracks from Top 10 Lastfm Albums
 ```js
 let albums = Lastfm.getTopAlbums({ user: 'login', limit: 10 });
 let tracks = Source.getAlbumsTracks(albums);
@@ -544,26 +543,26 @@ let tracks = Source.getAlbumsTracks(albums);
 
 ### mineTracks
 
-Возвращает массив треков, найденных при поиске плейлистов, альбомов или треков по ключевым словам. Из результата удаляются дубликаты.
+Returns an array of tracks found when searching for playlists, albums, or tracks by keywords. Duplicates are removed from the result.
 
-Аргументы
-- (объект) `params` - параметры поиска.
+Arguments
+- (object) `params` - search parameters.
 
-Описание `params`
-- (строка) `type` - тип поиска. Допустимо: `playlist`, `album`, `track`. По умолчанию `playlist`. При `track` можно использовать [расширенный поиск](https://support.spotify.com/by-ru/article/search/).
-- (массив) `keyword` - перечень ключевых слов для поиска элементов.
-- (число) `requestCount` - количество запросов на одно ключевое слово. С одного запроса 50 элементов, если они есть. Максимум 40 запросов. По умолчанию один.
-- (число) `itemCount` - количество выбираемых элементов из всех найденных на одно ключевое слово. По умолчанию три.
-- (бул) `inRow` - если не указано или `false`, элементы выбираются случайно. Если `true` берутся первые `N` элементов (по значению `itemCount`).
-- (число) `popularity` - минимальное значение популярности трека. По умолчанию ноль.
-- (объект) `followers` - диапазон количества подписчиков плейлиста (границы включительно). Фильтр до выбора `itemCount`. Используйте только с малым количеством `requestCount` при `type = playlist`. 
+Description of `params`
+- (string) `type` - search type. Allowed: `playlist`,` album`, `track`. The default is `playlist`. With `track`, you can use [advanced search](https://support.spotify.com/by-ru/article/search/).
+- (array) `keyword` - list of keywords to search for elements.
+- (number) `requestCount` - number of requests per one keyword. From one request 50 elements, if any. Maximum 40 requests. The default is one.
+- (number) `itemCount` - the number of selected items from all found per one keyword. The default is three.
+- (bool) `inRow` - if not specified or` false`, elements are selected randomly. If `true` takes the first` N` items (by value of `itemCount`).
+- (number) `popularity` - the minimum value of the popularity of the track. The default is zero.
+- (object) `followers` - range of the number of playlist followers (boundaries inclusive). Filter before selecting `itemCount`. Use only with a small amount of `requestCount` with` type = playlist`.
 
-> Необходимо соблюдать баланс значений в `params`. Несколько больших значений могут занять много времени выполнения и совершить много запросов. Выясняйте на практике приемлемые комбинации.
+> The balance of values ​​in `params` must be observed. Several large values ​​can take a long time to execute and make many queries. Find out in practice the acceptable combinations.
 
-> Можно вывести количество совершенных запросов. Добавьте строчку в конец функции: 
-> `console.log('Число запросов', CustomUrlFetchApp.getCountRequest());`
+> You can display the number of requests made. Add a line to the end of the function:
+> `console.log('Number of requests', CustomUrlFetchApp.getCountRequest());`
 
-Пример 1 - Выбор 5 случайных плейлистов по каждому ключевому слову с популярностью треков от 70. С ограниченным количеством подписчиков плейлистов.
+Example 1 - Selecting 5 random playlists for each keyword with track popularity over 70. With a limited number of playlist subscribers.
 ```js
 let tracks = Source.mineTracks({
     keyword: ['synth', 'synthpop', 'rock'],
@@ -574,7 +573,7 @@ let tracks = Source.mineTracks({
 });
 ```
 
-Пример 2 - Выбор 10 первых плейлистов по ключевому слову с любой популярностью треков
+Example 2 - Selecting the top 10 playlists by keyword with any track popularity
 ```js
 let tracks = Source.mineTracks({
     keyword: ['indie'],
@@ -583,7 +582,7 @@ let tracks = Source.mineTracks({
 });
 ```
 
-Пример 3 - Выбор треков из случайных альбомов
+Example 3 - Selecting tracks from random albums
 ```js
 let tracks = Source.mineTracks({
     type: 'album',
@@ -591,7 +590,7 @@ let tracks = Source.mineTracks({
 });
 ```
 
-Пример 4 - Выбор треков в жанре инди за 2020 год
+Example 4 - Selecting indie tracks for 2020
 ```js
 let tracks = Source.mineTracks({
     type: 'track',
@@ -601,23 +600,23 @@ let tracks = Source.mineTracks({
 
 ### craftTracks
 
-Возвращает массив треков, полученный от [getRecomTracks](/func?id=getrecomtracks) для каждой пятерки элементов исходных треков. Дубликаты исходных треков игнорируются, в рекомендованных удаляются. Ограничение в пять элементов продиктовано Spotify API для функции рекомендаций. 
+Returns an array of tracks from [getRecomTracks](/func?id=getrecomtracks) for each 5 of the original track items. Duplicates of the original tracks are ignored, the recommended ones are deleted. The five-item limit is dictated by the Spotify API for the recommendation feature.
 
-> Можно частично повлиять на формируемые пятерки элементов. До вызова функции применив одну из сортировок `Order`.
+> You can partially influence the formed fives of elements. Before calling the function, applying one of the `Order` sorts.
 
-Аргументы
-- (массив) `tracks` - треки для которых получать рекомендации. При `key` равному `seed_artists` допустим массив исполнителей.
-- (объект) `params` - дополнительные параметры.
+Arguments
+- (array) `tracks` - tracks for which to receive recommendations. If `key` is equal to` seed_artists`, an array of artists is allowed.
+- (object) `params` - additional parameters.
 
-Описание параметров
-- (строка) `key` - определяет по какому ключу рекомендации. Допустимо: `seed_tracks` и `seed_artists`. По умолчанию `seed_tracks`.
-- (объект) `query` - необязательный параметр, доступны все ключи [getRecomTracks](/func?id=getrecomtracks), кроме указанного в `key`.
+Parameter Description
+- (string) `key` - defines by which key of the recommendation. Valid: `seed_tracks` and` seed_artists`. The default is `seed_tracks`.
+- (object) `query` - optional parameter, all keys [getRecomTracks](/func?id=getrecomtracks) are available, except for the one specified in` key`.
 
-> В `query` можно указать два из: `seed_tracks`, `seed_artists`, `seed_genres`. Третий выбирается исходя из `key`. Таким образом, можно задать статичные трек/исполнителя/жанр (до 4 значений на все). Оставшиеся свободные места будут подставляться исходя из `key`.
+> In `query`, you can specify two of:` seed_tracks`, `seed_artists`,` seed_genres`. The third is selected based on `key`. Thus, you can set a static track / artist / genre (up to 4 values ​​for all). The remaining free space will be substituted based on `key`.
 
-> Указание конкретного жанра в `seed_genres` необязательно вернет треки данного жанра. Это отправная точка для рекомендаций.
+> Specifying a specific genre in `seed_genres` will not necessarily return tracks of that genre. This is the starting point for recommendations.
 
-Пример 1 - Получить рекомендации по всем любимым трекам по их исполнителям
+Example 1 - Get recommendations for all your favorite tracks by their artist
 ```js
 let tracks = Source.getSavedTracks();
 let recomTracks = Source.craftTracks(tracks, {
@@ -631,7 +630,7 @@ let recomTracks = Source.craftTracks(tracks, {
 });
 ```
 
-Пример 2 - Рекомендации с указанием статичного жанра и трека. Оставшиеся 3 места занимаются `seed_artists`.
+Example 2 - Recommendations indicating a static genre and track. The remaining 3 places are occupied by `seed_artists`.
 ```js
 let recomTracks = Source.craftTracks(tracks, {
     key: 'seed_artists',
@@ -642,7 +641,7 @@ let recomTracks = Source.craftTracks(tracks, {
 });
 ```
 
-Пример 3 - Можно указать только массив треков. Тогда будут рекомендации по ключу `seed_tracks`.
+Example 3 - Only an array of tracks can be specified. Then there will be recommendations for the `seed_tracks` key.
 ```js
 let tracks = Source.getSavedTracks();
 let recomTracks = Source.craftTracks(tracks);
@@ -650,25 +649,27 @@ let recomTracks = Source.craftTracks(tracks);
 
 ## RecentTracks
 
-Источник истории прослушиваний 
+Listening history source 
 
 ### appendTracks
 
-Добавляет массив треков к файлу истории прослушиваний. Дата добавления в плейлист `added_at` становится датой прослушивания `played_at`. Если даты нет, устанавливается значение `01.01.2000`. Сортируется по дате прослушивания от свежих к более старым.
+Adds an array of tracks to the listening history file. The date added to the playlist `added_at` becomes the listening date of` played_at`. If there is no date, the value is set to `01.01.2000`. Sorted by date of listening from newest to oldest.
 
-> Если дата добавляемого трека из плейлиста новее даты последнего прослушивания, добавляемый трек станет первым в списке. Это вызовет логическую ошибку вычисления последнего прослушивания в триггере. Поэтому вместо игнорирования или пары треков, триггер добавит весь доступный массив. По умолчанию это 50 треков для Spotify, 30 для Lastfm. Следующий триггер сработает корректно. 
+> If the date of the added track from the playlist is later than the date of the last listening, the added track will become the first in the list. This will cause a logical error to compute the last listen in the trigger. Therefore, instead of ignoring or a couple of tracks, the trigger will add the entire available array. The default is 50 tracks for Spotify, 30 for Lastfm. The next trigger will fire correctly.
 
-> Обратите внимание на ограничение в 20 тысяч треков для истории прослушиваний. Все элементы сверх предела удаляются. 
+> Note the 20K track limit for listening history. All items over the limit are removed.
 
-Аргументы
-- (строка) `filename` - имя файла истории прослушиваний. Допустимо: `SpotifyRecentTracks` и `LastfmRecentTracks`.
-- (массив) `tracks` - добавляемые треки.
+Arguments
+- (string) `filename` - name of the listening history file. Valid: `SpotifyRecentTracks` and` LastfmRecentTracks`.
+- (array) `tracks` - tracks to add.
 
-Пример 1 - Добавить в историю прослушиваний все любимые треки
+Example 1 - Add all favorite tracks to the listening history
 ```js
 let tracks = Source.getSavedTracks();
 RecentTracks.appendTracks('SpotifyRecentTracks', tracks);
 ```
+
+# RU
 
 ### compress
 
